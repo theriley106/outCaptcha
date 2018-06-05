@@ -2,7 +2,7 @@
   "name": "WebRequest",
   "description": "WebRequest - onCompleted",
   "version": "0.1",
-  "permissions": ["<all_urls>", "webRequest",  "tabs", "http://localhost/*"],
+  "permissions": ["<all_urls>", "webRequest",  "tabs", "activeTab", "http://localhost/*"],
   "background": {
     "scripts": ["background.js"]
   },

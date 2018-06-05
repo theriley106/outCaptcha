@@ -1,5 +1,15 @@
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function demo() {
+  console.log('Taking a break...');
+  await sleep(1500);
+  console.log('Two second later');
+}
+
 chrome.webRequest.onCompleted.addListener(function(details) {
-	chrome.tabs.query({
+    chrome.tabs.query({
         active: true,
         lastFocusedWindow: true
     }, function(tabs) {
@@ -14,14 +24,38 @@ chrome.webRequest.onCompleted.addListener(function(details) {
             var returnVal = xhr.responseText;
             chrome.tabs.executeScript({
           code: `
-          document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("audio-response").value = "'
-          ` + returnVal + '"'
+          document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById('audio-response').value = "` + returnVal + '"'
             });
             chrome.tabs.executeScript({
-            code: 'document.querySelector("[title="recaptcha challenge"]").contentWindow.document.getElementById("recaptcha-verify-button").click()'
+            code: `
+            document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-verify-button").click()
+            `
             });
-	}
+    }
+    else {
+        chrome.tabs.executeScript({code: `document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-audio-button").click()`});
+    }
     });
 
 
 },{urls:["https://translate.google.com/translate_tts?*", "https://www.google.com/recaptcha/api2/payload?*"]});
+
+chrome.webRequest.onCompleted.addListener(function(details) {
+    chrome.tabs.query({
+        active: true,
+        lastFocusedWindow: true
+    }, function(tabs) {
+        // and use that tab to fill in out title and url
+        var tab = tabs[0];
+        if (String(tab.url) != String(details.url)){
+            chrome.tabs.executeScript({code: `document.querySelector('[role="presentation"]').contentWindow.document.getElementById("recaptcha-anchor").click()`});
+    }
+    });
+
+
+},{urls:["https://www.google.com/recaptcha/api2/bframe?*"]});
+
+
+
+
+
