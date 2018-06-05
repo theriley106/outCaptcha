@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "transcript": "search for implementing",
+          "confidence": 0.91601354,
+          "words": [
+            {
+              "startTime": "1.200s",
+              "endTime": "1.900s",
+              "word": "search"
+            },
+            {
+              "startTime": "1.900s",
+              "endTime": "2.500s",
+              "word": "for"
+            },
+            {
+              "startTime": "2.500s",
+              "endTime": "3s",
+              "word": "implementing"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
