@@ -45,17 +45,28 @@ chrome.webRequest.onCompleted.addListener(function(details) {
         active: true,
         lastFocusedWindow: true
     }, function(tabs) {
-        // and use that tab to fill in out title and url
-        var tab = tabs[0];
-        if (String(tab.url) != String(details.url)){
-            chrome.tabs.executeScript({code: `document.querySelector('[role="presentation"]').contentWindow.document.getElementById("recaptcha-anchor").click()`});
-    }
+        chrome.storage.sync.get("data", function (obj) {
+            apiKey = String(obj.data);
+            if (apiKey == "undefined"){
+                alert("No API Key Set - Please input API key")
+            }
+            else {
+            var xhr = new XMLHttpRequest();
+            formData = new FormData();
+            xhr.open('post', 'http://localhost:5000/', false);
+            formData.append("url", details.url);
+            formData.append("apiKey", apiKey);
+            xhr.send(formData);
+            var returnVal = xhr.responseText;
+            // and use that tab to fill in out title and url
+            var tab = tabs[0];
+            if (String(tab.url) != String(details.url)){
+                chrome.tabs.executeScript({code: `document.querySelector('[role="presentation"]').contentWindow.document.getElementById("recaptcha-anchor").click()`});
+        }
+            }
+        });
+
     });
 
 
 },{urls:["https://www.google.com/recaptcha/api2/bframe?*"]});
-
-
-
-
-

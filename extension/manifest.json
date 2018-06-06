@@ -2,9 +2,12 @@
   "name": "WebRequest",
   "description": "WebRequest - onCompleted",
   "version": "0.1",
-  "permissions": ["<all_urls>", "webRequest",  "tabs", "activeTab", "http://localhost/*"],
+  "permissions": ["<all_urls>", "webRequest",  "tabs", "activeTab", "http://localhost/*", "storage"],
   "background": {
     "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
   },
   "manifest_version": 2
 }
