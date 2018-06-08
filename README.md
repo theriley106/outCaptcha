@@ -12,4 +12,6 @@ foo@bar:~$ chromium-browser --disable-web-security -user-data-dir=~/ & python ap
 
 In Chrome, navigate to "chrome://extensions" and drag the ~/extensions/ directory into the browser window.
 
+## Testing
 
+Check out https://patrickhlauke.github.io/recaptcha/ to test the functionality.
