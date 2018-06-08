@@ -1,7 +1,18 @@
 {
   "error": {
     "code": 400,
-    "message": "RecognitionAudio not set.",
-    "status": "INVALID_ARGUMENT"
+    "message": "API key not valid. Please pass a valid API key.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Google developers console",
+            "url": "https://console.developers.google.com"
+          }
+        ]
+      }
+    ]
   }
 }

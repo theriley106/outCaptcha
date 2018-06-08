@@ -6,9 +6,9 @@ app = Flask(__name__, static_url_path='/static')
 @app.route('/', methods=['POST'])
 def index():
 	print request.form
-	print request.form['url']
-	print request.form['apiKey']
-	a = solveCaptcha.solveFromURL(request.form['url'])
+	url = request.form['url']
+	apiKey = request.form['apiKey']
+	a = solveCaptcha.solveFromURL(url, apiKey)
 	return a
 
 @app.route('/test', methods=['GET'])

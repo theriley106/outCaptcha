@@ -33,32 +33,23 @@ def generateURL(keyWords, region='en'):
 	# Google translate url doesn't have a space
 	return "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q={}&tl={}".format(keyWords, region)
 
-def solveFromURL(url):
-	saveMP3(url, 'newAudio.mp3')
-	os.system("ffmpeg -y -i newAudio.mp3 -ac 1 output.flac")
-	base64Val = encode_audio(open("output.flac"))
-	genRequest(base64Val)
-	os.system('curl -X POST -H "Content-Type: application/json; charset=utf-8" --data @sync-request.json "https://speech.googleapis.com/v1/speech:recognize?key=AIzaSyBw_WHIlxqHILGy6hDnArgKKq_Oz5wJmAk" -o result.json')
-	a = json.load(open('result.json'))
-	print a
-	transcript = a['results'][0]['alternatives'][0]["transcript"]
-	print("Solved: {}".format(transcript))
-	return transcript
+def solveFromURL(url, apiKey):
+	try:
+		saveMP3(url, 'newAudio.mp3')
+		os.system("ffmpeg -y -i newAudio.mp3 -ac 1 output.flac")
+		base64Val = encode_audio(open("output.flac"))
+		genRequest(base64Val)
+		os.system('curl -X POST -H "Content-Type: application/json; charset=utf-8" --data @sync-request.json "https://speech.googleapis.com/v1/speech:recognize?key={}" -o result.json'.format(apiKey))
+		a = json.load(open('result.json'))
+		if "API key not valid" in str(a):
+			return "INVALID_API_KEY"
+		print a
+		transcript = a['results'][0]['alternatives'][0]["transcript"]
+		print("Solved: {}".format(transcript))
+		return transcript
+	except:
+		return "UNKNOWN_ERROR"
 
 
 if __name__ == '__main__':
-	#saveMP3(generateURL('hello this actually works properly somehow'), 'newAudio.mp3')
-	#os.system("sox newAudio.mp3 translate_ttsz.mp3 pad .5 0")
-	#os.system("mv translate_ttsz.mp3 newAudio.mp3")
-	os.system("ffmpeg -y -i test2.mp3 -ac 1 output.flac")
-	base64Val = encode_audio(open("output.flac"))
-	genRequest(base64Val)
-	os.system('curl -X POST -H "Content-Type: application/json; charset=utf-8" --data @sync-request.json "https://speech.googleapis.com/v1/speech:recognize?key=AIzaSyBw_WHIlxqHILGy6hDnArgKKq_Oz5wJmAk" -o result.json')
-	a = json.load(open('result.json'))
-	transcript = a['results'][0]['alternatives'][0]["transcript"]
-	print transcript
-
-	#os.system('curl -s -X POST -H "Content-Type: application/json" --data-binary @sync-request.json "https://speech.googleapis.com/v1beta1/speech:syncrecognize?key=AIzaSyBw_WHIlxqHILGy6hDnArgKKq_Oz5wJmAk"')
-
-
-#base64 output.flac -w 0 > audio.base64
+	pass
