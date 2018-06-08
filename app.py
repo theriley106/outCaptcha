@@ -15,4 +15,4 @@ def testPage():
 	return render_template("index1.html")
 
 if __name__ == '__main__':
-	app.run(host='127.0.0.1', port=5000, debug=True)
+	app.run(host='127.0.0.1', port=5000, debug=True, threaded=True)
