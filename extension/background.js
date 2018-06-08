@@ -15,26 +15,30 @@ chrome.webRequest.onCompleted.addListener(function(details) {
     }, function(tabs) {
         // and use that tab to fill in out title and url
         var tab = tabs[0];
-        if ((String(details.type) == "media") && (String(tab.url) != String(details.url))){
-            var xhr = new XMLHttpRequest();
-            formData = new FormData();
-            xhr.open('post', 'http://localhost:5000/', false);
-            formData.append("url", details.url);
-            xhr.send(formData);
-            var returnVal = xhr.responseText;
-            chrome.tabs.executeScript({
-          code: `
-          document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById('audio-response').value = "` + returnVal + '"'
-            });
-            chrome.tabs.executeScript({
-            code: `
-            document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-verify-button").click()
-            `
-            });
-    }
-    else {
-        chrome.tabs.executeScript({code: `document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-audio-button").click()`});
-    }
+        chrome.storage.sync.get("data", function (ob) {
+            if ((String(details.type) == "media") && (String(tab.url) != String(details.url))){
+                apiKey = String(ob.data);
+                var xhr = new XMLHttpRequest();
+                formData = new FormData();
+                xhr.open('post', 'http://localhost:5000/', false);
+                formData.append("url", details.url);
+                formData.append("apiKey", apiKey);
+                xhr.send(formData);
+                var returnVal = xhr.responseText;
+                chrome.tabs.executeScript({
+              code: `
+              document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById('audio-response').value = "` + returnVal + '"'
+                });
+                chrome.tabs.executeScript({
+                code: `
+                document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-verify-button").click()
+                `
+                });
+        }
+        else {
+            chrome.tabs.executeScript({code: `document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-audio-button").click()`});
+        }
+});
     });
 
 
@@ -51,14 +55,6 @@ chrome.webRequest.onCompleted.addListener(function(details) {
                 alert("No API Key Set - Please input API key")
             }
             else {
-            var xhr = new XMLHttpRequest();
-            formData = new FormData();
-            xhr.open('post', 'http://localhost:5000/', false);
-            formData.append("url", details.url);
-            formData.append("apiKey", apiKey);
-            xhr.send(formData);
-            var returnVal = xhr.responseText;
-            // and use that tab to fill in out title and url
             var tab = tabs[0];
             if (String(tab.url) != String(details.url)){
                 chrome.tabs.executeScript({code: `document.querySelector('[role="presentation"]').contentWindow.document.getElementById("recaptcha-anchor").click()`});

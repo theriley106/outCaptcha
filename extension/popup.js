@@ -16,5 +16,10 @@ document.getElementById("set").onclick = function() {
       console.log("Runtime error.");
     }
   });
+  chrome.tabs.query({active: true, currentWindow: true}, function (arrayOfTabs) {
+      var code = 'window.location.reload();';
+      chrome.tabs.executeScript(arrayOfTabs[0].id, {code: code});
+  });
   window.close();
+
 }
