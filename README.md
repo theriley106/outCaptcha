@@ -1,6 +1,6 @@
 # breakCaptcha
 
-<h2>Starting chrome without cross-origin resource sharing is necessary to interact with the reCAPTCHA iframe using JS.</h2>
+<h2>Note: Starting chrome without cross-origin resource sharing is necessary to interact with the reCAPTCHA iframe using JS.</h2>
 
 <i>Ideally a future version will be implemented in pure Javascript and the flask app won't be needed</i>
 
