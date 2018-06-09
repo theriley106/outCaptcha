@@ -25,7 +25,7 @@ Check out https://patrickhlauke.github.io/recaptcha/ to test the functionality.
 
 ## Technological Overview
 
-The extension uses chrome.webRequest with the following URL pattern to detect the presence of a captcha on the web page:
+<p align="center"><i>The extension uses chrome.webRequest with the following URL pattern to detect the presence of a captcha on the web page:</i></p>
 
 ```
 https://www.google.com/recaptcha/api2/bframe?*
