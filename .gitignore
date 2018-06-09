@@ -1,3 +1,7 @@
 *.pyc
 ~
 myAPIKey.txt
+sync-request.json
+output.flac
+newAudio.mp3
+result.json
