@@ -1,18 +1,29 @@
 {
-  "error": {
-    "code": 400,
-    "message": "API key not valid. Please pass a valid API key.",
-    "status": "INVALID_ARGUMENT",
-    "details": [
-      {
-        "@type": "type.googleapis.com/google.rpc.Help",
-        "links": [
-          {
-            "description": "Google developers console",
-            "url": "https://console.developers.google.com"
-          }
-        ]
-      }
-    ]
-  }
+  "results": [
+    {
+      "alternatives": [
+        {
+          "transcript": "singing sanitation products",
+          "confidence": 0.92575985,
+          "words": [
+            {
+              "startTime": "1.200s",
+              "endTime": "1.700s",
+              "word": "singing"
+            },
+            {
+              "startTime": "1.700s",
+              "endTime": "2.300s",
+              "word": "sanitation"
+            },
+            {
+              "startTime": "2.300s",
+              "endTime": "2.700s",
+              "word": "products"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
