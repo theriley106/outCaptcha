@@ -1,19 +1,18 @@
 # outCaptcha
 ## Solving reCAPTCHA 2.0 Without Human Interaction (Python & Javascript)
 
-<i>Ideally a future version will be implemented in pure Javascript and the flask app won't be needed</i>
-
 ## How to Run
 
 ```console
 foo@bar:~$ pip install -r requirements.txt
 ```
+<p align='center'><i>Install all requirements</i></p>
 
 ```console
 foo@bar:~$ chromium-browser --disable-web-security -user-data-dir=~/ & python app.py
 ```
 
-<i>Note: Starting chrome without cross-origin resource sharing is necessary to interact with the reCAPTCHA iframe using JS.</i>
+<b>Note: Starting chrome without cross-origin resource sharing is necessary to interact with the reCAPTCHA iframe using JS.</b>
 
 In Chrome, navigate to "chrome://extensions" and drag the ~/extensions/ directory into the browser window.
 
@@ -55,7 +54,7 @@ chrome.tabs.executeScript({ code: `document.querySelector('[role="presentation"]
 chrome.tabs.executeScript({ code: `document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-audio-button").click()` });
 ```
 
-<p align="center"><i>Since loading times differ for the audio file, onCaptcha monitors network activity using chrome.webRequest to detect URLs matching the following pattern:</i></p>
+<p align="center"><i>Since loading times can differ for the audio file, onCaptcha monitors network activity using chrome.webRequest to detect URLs matching the following pattern:</i></p>
 
 ```
 https://www.google.com/recaptcha/api2/payload?*
