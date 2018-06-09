@@ -4,7 +4,7 @@
 </i></p>
 
 
-<h1 align="center"><a href="https://www.youtube.com/watch?v=lnmtqPam1qg">Video showing onCaptcha solving reCAPTCHA 2.0</a></h1>
+<h1 align="center"><a href="https://www.youtube.com/watch?v=lnmtqPam1qg">Video showing outCaptcha solving reCAPTCHA 2.0</a></h1>
 
 
 
@@ -39,14 +39,14 @@ After detecting a Captcha, the extension uses the following JS code to "Click" t
 chrome.tabs.executeScript({ code: `document.querySelector('[role="presentation"]').contentWindow.document.getElementById("recaptcha-anchor").click()` });
 ```
 
-After successfully clicking the checkbox, reCAPTCHA 2.0 triggers the user to complete an image verification.  Rather than completing the image verification, onCaptcha will click the Audio Accessibility button to request an Audio-based Captcha with this JS code:
+After successfully clicking the checkbox, reCAPTCHA 2.0 triggers the user to complete an image verification.  Rather than completing the image verification, outCaptcha will click the Audio Accessibility button to request an Audio-based Captcha with this JS code:
 
 ```javascript
 // This code snippet can be found in extension/background.js
 chrome.tabs.executeScript({ code: `document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-audio-button").click()` });
 ```
 
-After using chrome.webRequest to detect that the Audio-based captcha was successfully loaded, onCaptcha grabs the URL of the audio file and sends a POST request to localhost containing the URL and the API Key used to configure the extension.  After the backend processing is completed onCaptcha will input the solution and click the verify button using Javascript:
+After using chrome.webRequest to detect that the Audio-based captcha was successfully loaded, outCaptcha grabs the URL of the audio file and sends a POST request to localhost containing the URL and the API Key used to configure the extension.  After the backend processing is completed outCaptcha will input the solution and click the verify button using Javascript:
 
 ```javascript
 // This code snippet can be found in extension/background.js
@@ -71,7 +71,7 @@ The extension uses chrome.webRequest with the following URL pattern to detect th
 https://www.google.com/recaptcha/api2/bframe?*
 ```
 
-Since loading times can differ for the Audio-based Captcha, onCaptcha monitors network activity using chrome.webRequest to detect URLs matching the following pattern:
+Since loading times can differ for the Audio-based Captcha, outCaptcha monitors network activity using chrome.webRequest to detect URLs matching the following pattern:
 
 ```
 https://www.google.com/recaptcha/api2/payload?*
@@ -82,7 +82,7 @@ https://www.google.com/recaptcha/api2/payload?*
 <p align="center"><i>
   <img src="src/invalidKey.png" width="250"/>
 </i></p>
-<p align="center"><i>onCaptcha will detect invalid API keys, and will trigger the user to input a valid API key if an error occurs during speech-to-text conversion</i></p>
+<p align="center"><i>outCaptcha will detect invalid API keys, and will trigger the user to input a valid API key if an error occurs during speech-to-text conversion</i></p>
 
 
 
