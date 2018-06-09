@@ -4,7 +4,7 @@
 </i></p>
 
 
-<h1 align="center"><a href="https://www.youtube.com/watch?v=lnmtqPam1qg">Watch outCaptcha solve reCAPTCHA 2.0</a></h1>
+<h1 align="center"><a href="https://www.youtube.com/watch?v=lnmtqPam1qg">Watch the outCaptcha extension solve reCAPTCHA 2.0</a></h1>
 
 
 
@@ -79,6 +79,5 @@ https://www.google.com/recaptcha/api2/payload?*
   <img src="src/invalidKey.png" width="250"/>
 </i></p>
 <p align="center"><i>outCaptcha will detect invalid API keys, and will trigger the user to input a valid API key if an error occurs during speech-to-text conversion</i></p>
-
 
 
