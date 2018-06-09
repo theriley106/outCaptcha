@@ -1,14 +1,11 @@
 # outCaptcha
 ## Solving reCAPTCHA 2.0 Without Human Interaction (Python & Javascript)
+
 <p align="center"><i>
   <img src="src/solved.png" width="450"/>
 </i></p>
-## How to Run
 
-```console
-foo@bar:~$ pip install -r requirements.txt
-```
-<p align='center'><i>Install all requirements</i></p>
+## How to Run
 
 ```console
 foo@bar:~$ chromium-browser --disable-web-security -user-data-dir=~/ & python app.py
@@ -65,13 +62,13 @@ chrome.tabs.executeScript({code: `document.querySelector('[title="recaptcha chal
 
 ### URL Matching
 
-<p align="center"><i>The extension uses chrome.webRequest with the following URL pattern to detect the presence of a captcha on the web page:</i></p>
+The extension uses chrome.webRequest with the following URL pattern to detect the presence of a captcha on the web page:
 
 ```
 https://www.google.com/recaptcha/api2/bframe?*
 ```
 
-<p align="center"><i>Since loading times can differ for the Audio-based Captcha, onCaptcha monitors network activity using chrome.webRequest to detect URLs matching the following pattern:</i></p>
+Since loading times can differ for the Audio-based Captcha, onCaptcha monitors network activity using chrome.webRequest to detect URLs matching the following pattern:
 
 ```
 https://www.google.com/recaptcha/api2/payload?*
