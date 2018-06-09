@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect, Markup, jsonify, make_response, send_from_directory, session
 import solveCaptcha
+
 app = Flask(__name__, static_url_path='/static')
 
 
