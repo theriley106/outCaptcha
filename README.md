@@ -38,7 +38,10 @@ https://www.google.com/recaptcha/api2/bframe?*
 
 ```javascript
 // This code snippet can be found in extension/background.js
-chrome.tabs.executeScript({ code: `document.querySelector('[role="presentation"]').contentWindow.document.getElementById("recaptcha-anchor").click()` });
+chrome.tabs.executeScript(
+{ code: `
+document.querySelector('[role="presentation"]').contentWindow.document.getElementById("recaptcha-anchor").click()
+` });
 ```
 
 
