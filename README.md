@@ -25,15 +25,21 @@ Check out https://patrickhlauke.github.io/recaptcha/ to test the functionality.
 
 ## Technological Overview
 
+The extension uses chrome.webRequest with the following URL pattern to detect the presence of a captcha on the web page:
+
+```
+https://www.google.com/recaptcha/api2/bframe?*
+```
+
 <p align="center">
   <img src="src/unsolvedCaptcha.png" width="250"/>
 </p>
-<p align="center">Starting with Unsolved Captcha, the Chrome Extension executes: </p>
+<p align="center">After detecting a Captcha, the extension uses the following Javascript code to "Click" the checkbox indicating a human is present:</p>
 
 ```javascript
-chrome.tabs.executeScript(
-{ code: `document.querySelector('[role="presentation"]'
-).contentWindow.document.getElementById("recaptcha-anchor").click()` });
+// This code snippet can be found in extension/background.js
+chrome.tabs.executeScript({ code: `document.querySelector('[role="presentation"]').contentWindow.document.getElementById("recaptcha-anchor").click()` });
 ```
+
 
 
