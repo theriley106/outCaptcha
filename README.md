@@ -68,6 +68,7 @@ https://www.google.com/recaptcha/api2/payload?*
 <p align="center">The server downloads the RAW audio file and converts it to FLAC format using FFMPEG.  This FLAC file is then encoded as Base64 and sent to Google's Speech-To-Text API.  The Captcha solution is returned as a string.</p>
 
 <p align="center">After successfully solving the Captcha, onCaptcha will input the solution and click the verify button using Javascript.<p>
+
 ```javascript
 // This code snippet can be found in extension/background.js
 chrome.tabs.executeScript({code: `document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById('audio-response').value = "` + returnVal + '"'});
