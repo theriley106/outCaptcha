@@ -9,12 +9,8 @@ def index():
 	print request.form
 	url = request.form['url']
 	apiKey = request.form['apiKey']
-	a = solveCaptcha.solveFromURL(url, apiKey)
-	return a
-
-@app.route('/test', methods=['GET'])
-def testPage():
-	return render_template("index1.html")
+	solution = solveCaptcha.solveFromURL(url, apiKey)
+	return solution
 
 if __name__ == '__main__':
 	app.run(host='127.0.0.1', port=5000, debug=True, threaded=True)
