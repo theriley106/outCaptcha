@@ -11,15 +11,15 @@
 foo@bar:~$ chromium-browser --disable-web-security -user-data-dir=~/ & python app.py
 ```
 
-<b>Note: Starting chrome without cross-origin resource sharing is necessary to interact with the reCAPTCHA iframe using JS.</b>
+<p align="center"><b>Note: Starting chrome without cross-origin resource sharing is necessary to interact with the reCAPTCHA iframe using JS.</b></p>
 
 In Chrome, navigate to "chrome://extensions" and drag the ~/extensions/ directory into the browser window.
 
-Configure the Chrome extension with a valid Google Cloud Speech-To-Text API key (Pictured)
 
 <p align="center"><i>
   <img src="src/keyInput.png" width="250"/>
 </i></p>
+<p align='center'>Configure the Chrome extension with a valid Google Cloud Speech-To-Text API key</p>
 
 ## Testing
 
