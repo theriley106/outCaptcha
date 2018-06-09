@@ -1,13 +1,3 @@
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function demo() {
-  console.log('Taking a break...');
-  await sleep(1500);
-  console.log('Two second later');
-}
-
 chrome.webRequest.onCompleted.addListener(function(details) {
     chrome.tabs.query({
         active: true,
@@ -25,15 +15,23 @@ chrome.webRequest.onCompleted.addListener(function(details) {
                 formData.append("apiKey", apiKey);
                 xhr.send(formData);
                 var returnVal = xhr.responseText;
-                chrome.tabs.executeScript({
-              code: `
-              document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById('audio-response').value = "` + returnVal + '"'
-                });
-                chrome.tabs.executeScript({
-                code: `
-                document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-verify-button").click()
-                `
-                });
+                if (returnVal == "INVALID_API_KEY"){
+                    alert("Invalid API Key")
+                }
+                else if (returnVal == "UNKNOWN_ERROR") {
+                    alert("An unknown error has occured")
+                }
+                else {
+                    chrome.tabs.executeScript({
+                  code: `
+                  document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById('audio-response').value = "` + returnVal + '"'
+                    });
+                    chrome.tabs.executeScript({
+                    code: `
+                    document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-verify-button").click()
+                    `
+                    });
+                }
         }
         else {
             chrome.tabs.executeScript({code: `document.querySelector('[title="recaptcha challenge"]').contentWindow.document.getElementById("recaptcha-audio-button").click()`});
