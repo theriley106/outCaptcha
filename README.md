@@ -4,7 +4,7 @@
 </i></p>
 
 
-<h1 align="center"><a href="https://www.youtube.com/watch?v=lnmtqPam1qg">Video showing outCaptcha solving reCAPTCHA 2.0</a></h1>
+<h1 align="center"><a href="https://www.youtube.com/watch?v=lnmtqPam1qg">Watch outCaptcha solve reCAPTCHA 2.0</a></h1>
 
 
 
@@ -23,10 +23,6 @@ In Chrome, navigate to "chrome://extensions" and drag the ~/extensions/ director
   <img src="src/keyInput.png" width="250"/>
 </i></p>
 <p align='center'>Configure the Chrome extension with a valid Google Cloud Speech-To-Text API key</p>
-
-## Testing
-
-Check out https://patrickhlauke.github.io/recaptcha/ to test the functionality.
 
 ## Technological Overview
 
