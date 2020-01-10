@@ -14,7 +14,7 @@
 foo@bar:~$ chromium-browser --disable-web-security -user-data-dir=~/ & python app.py
 ```
 
-<p align="center"><b>Note: Starting chrome without cross-origin resource sharing is necessary to interact with the reCAPTCHA iframe using JS.</b></p>
+<p align="center"><b>Note: Starting chrome with cross-origin resource sharing is necessary to interact with the reCAPTCHA iframe.</b></p>
 
 In Chrome, navigate to "chrome://extensions" and drag the ~/extensions/ directory into the browser window.
 
