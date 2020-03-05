@@ -8,7 +8,7 @@ app = Flask(__name__, static_url_path='/static')
 def index():
 	print request.form
 	url = request.form['url']
-	apiKey = request.form['apiKey']
+	apiKe = request.form['apiKey']
 	solution = solveCaptcha.solveFromURL(url, apiKey)
 	return solution
 
